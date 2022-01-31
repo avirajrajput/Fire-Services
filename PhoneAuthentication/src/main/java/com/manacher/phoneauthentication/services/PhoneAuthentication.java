@@ -63,7 +63,7 @@ public class PhoneAuthentication {
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
                                         public void onSuccess(Void unused) {
-                                            authListener.onSuccess(firebaseAuth);
+                                            authListener.onSuccess(firebaseAuth.getUid());
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {

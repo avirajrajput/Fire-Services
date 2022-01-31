@@ -4,7 +4,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public interface AuthListener {
 
-    void onSuccess(FirebaseAuth firebaseAuth);
+    void onSuccess(String userId);
     void onFailure();
 
 }
