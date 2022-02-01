@@ -1,4 +1,4 @@
-package com.manacher.phoneauthentication.services;
+package com.manacher.fireauthservice;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

@@ -1,10 +1,8 @@
 package com.manacher.phoneauthentication.services;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.net.Uri;
-import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -17,6 +15,7 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.manacher.fireauthservice.FireAuthService;
 
 import java.util.concurrent.TimeUnit;
 
@@ -83,10 +82,10 @@ public class PhoneAuthentication {
     public void sendVerificationCode(String phoneNumber) {
         PhoneAuthOptions options =
                 PhoneAuthOptions.newBuilder(firebaseAuth)
-                        .setPhoneNumber(phoneNumber)       // Phone number to verify
+                        .setPhoneNumber(phoneNumber) // Phone number to verify
                         .setTimeout(60L, TimeUnit.SECONDS) // Timeout and unit
-                        .setActivity(context)                 // Activity (for callback binding)
-                        .setCallbacks(mCallbacks)          // OnVerificationStateChangedCallbacks
+                        .setActivity(context) // Activity (for callback binding)
+                        .setCallbacks(mCallbacks) // OnVerificationStateChangedCallbacks
                         .build();
 
         PhoneAuthProvider.verifyPhoneNumber(options);
@@ -99,7 +98,6 @@ public class PhoneAuthentication {
         public void onCodeSent(@NonNull String codeSent, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(codeSent, forceResendingToken);
             verificationId = codeSent;
-
         }
 
         @Override

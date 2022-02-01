@@ -9,3 +9,6 @@ dependencyResolutionManagement {
 rootProject.name = "Authentication"
 include ':app'
 include ':PhoneAuthentication'
+include ':FireAuthService'
+include ':FireStoreService'
+include ':FireStorageService'
