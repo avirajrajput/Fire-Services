@@ -22,7 +22,7 @@ import java.util.concurrent.TimeUnit;
 public class PhoneAuthentication {
 
     private FirebaseAuth firebaseAuth;
-    private String verificationId;
+    public String verificationId;
     private Activity context;
 
     private AuthListener authListener;
@@ -37,6 +37,10 @@ public class PhoneAuthentication {
     }
 
     public void verifyCode(String code){
+        if(verificationId == null){
+            return;
+        }
+
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
         signInWithCredential(credential);
     }
