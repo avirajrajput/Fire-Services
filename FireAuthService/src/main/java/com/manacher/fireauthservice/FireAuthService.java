@@ -4,7 +4,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class FireAuthService {
-    private FirebaseAuth firebaseAuth;
+    public FirebaseAuth firebaseAuth;
 
     public FireAuthService() {
         firebaseAuth = FirebaseAuth.getInstance();

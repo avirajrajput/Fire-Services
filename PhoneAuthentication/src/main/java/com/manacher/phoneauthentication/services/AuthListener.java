@@ -1,10 +1,13 @@
 package com.manacher.phoneauthentication.services;
 
-import com.google.firebase.auth.FirebaseAuth;
+
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 
 public interface AuthListener {
 
-    void onSuccess(String userId);
-    void onFailure();
+    void authSuccessFul(Task<AuthResult> task);
+    void fireUserUpdated(String userId);
+    void authFailure();
 
 }

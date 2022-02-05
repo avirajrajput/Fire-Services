@@ -52,29 +52,32 @@ public class PhoneAuthentication {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
-
-                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
-                                    .setDisplayName(name)
-                                    .setPhotoUri(imageUrl)
-                                    .build();
-
-                            fireAuthService.getCurrentUser().updateProfile(profileUpdates)
-                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                        @Override
-                                        public void onSuccess(Void unused) {
-                                            authListener.onSuccess(firebaseAuth.getUid());
-                                        }
-                                    })
-                                    .addOnFailureListener(new OnFailureListener() {
-                                        @Override
-                                        public void onFailure(@NonNull Exception e) {
-                                            authListener.onFailure();
-                                        }
-                                    });
+                            authListener.authSuccessFul(task);
 
                         } else {
-                            authListener.onFailure();
+                            authListener.authFailure();
                         }
+                    }
+                });
+    }
+
+    public void updateFireUser(String name, Uri imageUrl){
+        UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                .setDisplayName(name)
+                .setPhotoUri(imageUrl)
+                .build();
+
+        fireAuthService.getCurrentUser().updateProfile(profileUpdates)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        authListener.fireUserUpdated(firebaseAuth.getUid());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        authListener.authFailure();
                     }
                 });
     }
@@ -110,7 +113,7 @@ public class PhoneAuthentication {
 
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
-            authListener.onFailure();
+            authListener.authFailure();
         }
     };
 }
