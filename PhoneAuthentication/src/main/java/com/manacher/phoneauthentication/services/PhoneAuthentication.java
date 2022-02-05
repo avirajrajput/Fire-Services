@@ -25,19 +25,14 @@ public class PhoneAuthentication {
     private String verificationId;
     private Activity context;
 
-    private String name;
-    private Uri imageUrl;
-
     private AuthListener authListener;
 
     private FireAuthService fireAuthService;
 
-    public PhoneAuthentication(Activity context, String name, Uri imageUrl){
+    public PhoneAuthentication(Activity context){
         this.firebaseAuth = FirebaseAuth.getInstance();
         this.context = context;
         this.authListener = (AuthListener)context;
-        this.name = name;
-        this.imageUrl = imageUrl;
         this.fireAuthService = new FireAuthService();
     }
 
