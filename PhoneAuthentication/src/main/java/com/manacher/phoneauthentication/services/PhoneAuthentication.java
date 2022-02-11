@@ -28,6 +28,7 @@ public class PhoneAuthentication {
     private AuthListener authListener;
 
     private FireAuthService fireAuthService;
+    public PhoneAuthProvider.ForceResendingToken token;
 
     public PhoneAuthentication(Activity context){
         this.firebaseAuth = FirebaseAuth.getInstance();
@@ -100,6 +101,7 @@ public class PhoneAuthentication {
         public void onCodeSent(@NonNull String codeSent, @NonNull PhoneAuthProvider.ForceResendingToken forceResendingToken) {
             super.onCodeSent(codeSent, forceResendingToken);
             verificationId = codeSent;
+            token = forceResendingToken;
         }
 
         @Override

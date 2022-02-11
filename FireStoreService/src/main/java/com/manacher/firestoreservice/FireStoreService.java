@@ -142,6 +142,14 @@ public class FireStoreService {
         return fireStore.collection(collection).whereEqualTo(field, object).get();
     }
 
+    public Task<QuerySnapshot> getWhichEquals(String collection, String field1, Object object1, String field2, Object object2){
+
+        return fireStore.collection(collection)
+                .whereEqualTo(field1, object1)
+                .whereEqualTo(field2, object2)
+                .get();
+    }
+
     public DocumentReference getDocReference(String collection, String document){
         return fireStore.collection(collection).document(document);
 
